@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using WebApplication1.Models.Interface;
 
-namespace WebApplication1.Models.Repository
+namespace WebApplication1.Models
 {
     public class OrderRepository : IOrderRepository, IDisposable
     {

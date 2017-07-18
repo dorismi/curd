@@ -4,8 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using WebApplication1.Models.Interface;
+using WebApplication1.ViewModels;
 
-namespace WebApplication1.Models.Repository
+namespace WebApplication1.Models
 {
     public class OrderDetailRepository : IOrderDetailRepository, IDisposable
     {
@@ -62,6 +63,21 @@ namespace WebApplication1.Models.Repository
         public Order_Details Get(int OrderID)
         {
             return db.Order_Details.FirstOrDefault(x => x.OrderID == OrderID);
+        }
+
+        public IQueryable<OrderOrderDetailViewModel> GetOrderDetailnProduct(int OrderID)
+        {
+            var query = from o in db.Order_Details
+                        from p in db.Products.Where(p => p.ProductID == o.ProductID).DefaultIfEmpty()
+                        where o.OrderID == OrderID
+                        select new OrderOrderDetailViewModel
+                        {
+                            OrderId = o.OrderID,
+                            UnitPrice = o.UnitPrice,
+                            Quantity = o.Quantity,
+                            ProductName = p.ProductName
+                        };
+            return query;
         }
 
         public IQueryable<Order_Details> GetAll()
