@@ -54,6 +54,8 @@ namespace WebApplication1.Models
             }
             else
             {
+                //db.Order_Details.Load();
+                db.Order_Details.Load();
                 db.Entry(instance).State = EntityState.Deleted;
                 this.SaveChanges();
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Models.Interface
 {
@@ -13,7 +14,9 @@ namespace WebApplication1.Models.Interface
 
         void Delete(Order_Details instance);
 
-        Order_Details Get(int productID);
+        Order_Details Get(int OrderID);
+
+        IQueryable<OrderOrderDetailViewModel> GetOrderDetailnProduct(int OrderID);
 
         IQueryable<Order_Details> GetAll();
 
