@@ -7,12 +7,29 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
     public class CustomersController : Controller
     {
         private NorthwindEntities db = new NorthwindEntities();
+
+        //2017.07.17 Doris test
+        public ActionResult CustReport()
+        {
+            var query = from o in db.Orders
+                        from c in db.Customers.Where(c => c.CustomerID == o.CustomerID).DefaultIfEmpty()
+                        from d in db.Order_Details.Where(d => o.OrderID == o.OrderID).DefaultIfEmpty()
+                        group new { o, c, d } by new { o.OrderDate.Value.Year, c.CompanyName } into g
+                        select new CustomersOrdersOrderDetailsViewModel
+                        {
+                            CompanyName = g.Key.CompanyName,
+                            OrderYear = g.Key.Year,
+                            Amount = g.Sum(e => e.d.UnitPrice * e.d.Quantity)
+                        };
+            return View(query.ToList());
+        }
 
         // GET: Customers
         public ActionResult Index()

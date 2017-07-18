@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebApplication1.ViewModels.CustomersOrdersOrderDetailsViewModel>
+@{
+    ViewBag.Title = "CustReport";
+}
+
+<h2>CustReport</h2>
+<table border="1">
+    <tr>
+        <th>廠商名稱</th>
+        <th>訂單年</th>
+        <th>金額</th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelitem => item.CompanyName)</td>
+        <td>@Html.DisplayFor(modelitem => item.OrderYear)</td>
+        <td>@Html.DisplayFor(modelitem => item.Amount)</td>
+    </tr>
+}
+</table>
+
+
