@@ -190,6 +190,9 @@
     <Compile Include="Models\Employee_Sales_by_Country_Result.cs">
       <DependentUpon>Northwind.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interface\IOrderDetailRepository.cs" />
+    <Compile Include="Models\Interface\IOrderRepository.cs" />
+    <Compile Include="Models\Interface\IProductRepository.cs" />
     <Compile Include="Models\Invoices.cs">
       <DependentUpon>Northwind.tt</DependentUpon>
     </Compile>
@@ -238,6 +241,9 @@
     <Compile Include="Models\Region.cs">
       <DependentUpon>Northwind.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Repository\OrderDetailRepository.cs" />
+    <Compile Include="Models\Repository\OrderRepository.cs" />
+    <Compile Include="Models\Repository\ProductRepository.cs" />
     <Compile Include="Models\SalesByCategory_Result.cs">
       <DependentUpon>Northwind.tt</DependentUpon>
     </Compile>
